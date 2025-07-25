@@ -1,0 +1,94 @@
+:root {
+  --primary-dark: #2C3E50;
+  --accent-green: #18BC9C;
+  --accent-green-hover: #15a589;
+  --light-gray-bg: #f8f9fa;
+  --text-dark: #343a40;
+  --card-border: #dee2e6;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: var(--light-gray-bg);
+  font-family: 'Lato', sans-serif;
+  color: var(--text-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.navbar.bg-dark {
+  background-color: var(--primary-dark) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary,
+.btn-success {
+  background-color: var(--accent-green);
+  border-color: var(--accent-green);
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+  background-color: var(--accent-green-hover);
+  border-color: var(--accent-green-hover);
+}
+
+.card.request-card {
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+.card.request-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.form-container .card {
+  border: none;
+  box-shadow: var(--card-shadow-hover);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.badge.bg-info {
+  background-color: var(--primary-dark) !important;
+}
+
+/* --- 3. Styles for Login/Register Pages --- */
+
+.auth-page-container {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.auth-form-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.auth-switch-link {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
