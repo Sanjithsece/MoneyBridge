@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'; // Import useCallback
+import React, { useState, useEffect, useCallback } from 'react'; 
 import { Link, useNavigate } from 'react-router-dom';
 import { Navbar as BootstrapNavbar, Nav, Container, Button, Badge } from 'react-bootstrap';
 import { jwtDecode } from 'jwt-decode';
@@ -30,11 +30,10 @@ const Navbar = () => {
         return () => clearInterval(intervalId);
     }, [fetchCount]); 
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/login');
-        window.location.reload();
-    };
+const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/'); 
+};
 
     return (
         <BootstrapNavbar bg="dark" variant="dark" expand="lg">
