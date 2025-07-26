@@ -30,11 +30,10 @@ const Navbar = () => {
         return () => clearInterval(intervalId);
     }, [fetchCount]); 
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/login');
-        window.location.reload();
-    };
+const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/'); 
+};
 
     return (
         <BootstrapNavbar bg="dark" variant="dark" expand="lg">
