@@ -1,34 +1,105 @@
+/* =========================================================
+   1. THEME VARIABLES & GLOBAL STYLES
+   ========================================================= */
 :root {
   --primary-dark: #2C3E50;
   --accent-green: #18BC9C;
   --accent-green-hover: #15a589;
-  --light-gray-bg: #f8f9fa;
-  --text-dark: #343a40;
-  --card-border: #dee2e6;
-  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  --card-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+  /* New variables for the glass effect and light text */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-light: #f0f0f0;
+  --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================================
+   2. ANIMATED BODY BACKGROUND
+   ========================================================= */
+@keyframes warm-gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 body {
-  background-color: var(--light-gray-bg);
+  background: linear-gradient(-45deg, #e74c3c, #ff8c00, #f1c40f, #e94560);
+  background-size: 400% 400%;
+  animation: warm-gradient-flow 30s ease infinite;
+
+  /* Set default text color to light for readability */
   font-family: 'Lato', sans-serif;
-  color: var(--text-dark);
+  color: var(--text-light);
 }
 
-h1,
-h2,
-h3,
-h4,
-.card-title {
+/* =========================================================
+   3. TYPOGRAPHY & READABILITY
+   ========================================================= */
+h1, h2, h3, h4, .card-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
+  /* Add text shadow to make text pop against the animated background */
+  text-shadow: var(--text-shadow);
 }
 
-.navbar.bg-dark {
-  background-color: var(--primary-dark) !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+a {
+  color: var(--accent-green);
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--accent-green-hover);
 }
 
+/* =========================================================
+   4. GLASSMORPHISM STYLES (THE FROSTED GLASS EFFECT)
+   ========================================================= */
+
+/* A reusable class for the main glass effect */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* For Safari */
+  border-radius: 15px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Apply the glass effect to ALL cards and containers */
+.navbar,
+.card,
+.request-card,
+.form-container .card,
+.auth-form-card {
+  background: var(--glass-bg) !important; /* Use !important to override Bootstrap */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 15px !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Style for form inputs to match */
+.form-control {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: var(--text-light) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+}
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(24, 188, 156, 0.5) !important;
+}
+.form-label {
+   color: var(--text-light) !important;
+}
+
+/* =========================================================
+   5. COMPONENT-SPECIFIC STYLES
+   ========================================================= */
+
+/* Keep buttons solid for good contrast and user experience */
 .btn-primary,
 .btn-success {
   background-color: var(--accent-green);
@@ -36,59 +107,113 @@ h4,
   font-weight: bold;
   transition: background-color 0.2s ease-in-out;
 }
-
 .btn-primary:hover,
 .btn-success:hover {
   background-color: var(--accent-green-hover);
   border-color: var(--accent-green-hover);
 }
 
-.card.request-card {
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  transition: all 0.3s ease;
-  background-color: #ffffff;
-}
-
-.card.request-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--card-shadow-hover);
-}
-
-.form-container .card {
-  border: none;
-  box-shadow: var(--card-shadow-hover);
-  border-radius: 10px;
-  padding: 1rem;
-}
-
-.badge.bg-info {
-  background-color: var(--primary-dark) !important;
-}
-
-/* --- 3. Styles for Login/Register Pages --- */
-
+/* --- FIX for Login/Register Pages --- */
 .auth-page-container {
   min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  /* REMOVED the old background so the body's animation shows through! */
 }
 
 .auth-form-card {
   width: 100%;
   max-width: 420px;
   padding: 2rem;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  background-color: white;
 }
 
 .auth-switch-link {
   margin-top: 1.5rem;
   font-size: 0.9rem;
   text-align: center;
+} 
+/* --- NAVBAR TEXT COLOR OVERRIDE --- */
+
+/* Target all navigation links, the brand name, and ensure the text is black */
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-brand {
+  color: black !important;
+}
+
+/* Add a hover effect for better user experience */
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-brand:hover {
+  color: #333 !important; /* A slightly lighter black on hover */
+}
+
+/* Target the specific "Logout" button */
+.navbar-dark .btn-outline-light {
+  color: black !important;
+  border-color: black !important;
+}
+
+/* Style the "Logout" button for when the mouse hovers over it */
+.navbar-dark .btn-outline-light:hover {
+  color: white !important; /* Invert color on hover for readability */
+  background-color: black !important;
+  border-color: black !important;
+} /* =========================================================
+   6. RESPONSIVE DESIGN (MOBILE & TABLET)
+   ========================================================= */
+
+/* --- For Tablets and smaller devices (screen width 992px and below) --- */
+@media (max-width: 992px) {
+  
+  /* Stack the dashboard summary cards vertically */
+  .stat-cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .stat-card {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  /* CRITICAL: Allow wide tables (like the Admin Dashboard) to scroll horizontally */
+  /* This prevents the table from breaking the layout on small screens. */
+  .table-container {
+    overflow-x: auto;
+  }
+
+  /* Make the main dashboard title a bit smaller */
+  .dashboard-title {
+    font-size: 2rem;
+  }
+}
+
+
+/* --- For Mobile phones (screen width 576px and below) --- */
+@media (max-width: 576px) {
+
+  /* Reduce padding on main containers to give more space to content */
+  .dashboard-container,
+  .auth-page-container {
+    padding: 1rem;
+  }
+
+  /* Further reduce font sizes for small mobile screens */
+  h1, .dashboard-title {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Reduce padding inside the login/register card */
+  .auth-form-card {
+    padding: 1.5rem;
+  }
+
+  /* Make buttons inside the table smaller for a better fit */
+  .dashboard-table .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
 }

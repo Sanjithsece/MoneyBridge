@@ -89,9 +89,9 @@ const AdminDashboard = () => {
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
-                        <th>Request ID</th>
-                        <th>Proposer</th>
-                        <th>Receiver</th>
+                        <th>Request Made by </th>
+                        <th>Request Accepted</th>
+                        
                         <th>Status</th>
                         <th>Meeting Time</th>
                     </tr>
@@ -99,9 +99,9 @@ const AdminDashboard = () => {
                 <tbody>
                     {transactions.map(tx => (
                         <tr key={tx.id}>
-                            <td>{tx.exchangeRequest?.id || 'N/A'}</td>
+                             <td>{tx.receiver?.fullName || 'N/A'}</td>
                             <td>{tx.proposer?.fullName || 'N/A'}</td>
-                            <td>{tx.receiver?.fullName || 'N/A'}</td>
+                            
                             <td><Badge>{tx.status}</Badge></td>
                             <td>{new Date(tx.meetingTime).toLocaleString()}</td>
                         </tr>

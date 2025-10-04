@@ -3,8 +3,8 @@ import { Navigate, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import { Spinner } from 'react-bootstrap';
 
-const AdminRoute = ({ children }) => {
-    const { token, isAdmin, loading } = useContext(AuthContext);
+const ProtectedRoute = ({ children }) => {
+    const { token, loading } = useContext(AuthContext);
     const location = useLocation();
 
     if (loading) {
@@ -16,14 +16,11 @@ const AdminRoute = ({ children }) => {
     }
 
     if (!token) {
+ 
         return <Navigate to="/login" state={{ from: location }} replace />;
-    }
-
-    if (!isAdmin) {
-        return <Navigate to="/" replace />;
     }
 
     return children;
 };
 
-export default AdminRoute;
+export default ProtectedRoute;
