@@ -144,9 +144,59 @@ a:hover {
 }
 
 /* =========================================================
-   6. RESPONSIVE DESIGN (MOBILE & TABLET)
+   6. RESPONSIVE DESIGN (MOBILE-FIRST & ENHANCED)
    ========================================================= */
-@media (max-width: 992px) {
+
+/* --- For Tablets and smaller (768px and below) --- */
+@media (max-width: 768px) {
+
+  /* --- THE BIGGEST UPGRADE: TRANSFORM TABLES INTO CARDS --- */
+  
+  /* Hide the original table headers */
+  .dashboard-table thead {
+    display: none;
+  }
+  
+  /* Make the table and its body/rows behave like block elements */
+  .dashboard-table, .dashboard-table tbody, .dashboard-table tr, .dashboard-table td {
+    display: block;
+    width: 100%;
+  }
+  
+  /* Style each table row as a separate card */
+  .dashboard-table tr {
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem;
+  }
+  
+  /* Style each table cell (data point) */
+  .dashboard-table td {
+    text-align: right; /* Align data to the right */
+    position: relative;
+    padding-left: 50%; /* Make space for the label */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  .dashboard-table td:last-child {
+    border-bottom: none; /* Remove border from the last cell in a card */
+  }
+  
+  /* Use the 'data-label' attribute to create a label for each data point */
+  .dashboard-table td::before {
+    content: attr(data-label); /* This is the magic part */
+    position: absolute;
+    left: 1rem;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  /* --- OTHER IMPROVEMENTS --- */
+
+  /* Stack the dashboard summary cards vertically */
   .stat-cards-container {
     flex-direction: column;
     align-items: center;
@@ -154,32 +204,46 @@ a:hover {
   }
   .stat-card {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
   }
-  .table-container {
-    overflow-x: auto;
-  }
+  
+  /* Make the main dashboard title a bit smaller */
   .dashboard-title {
     font-size: 2rem;
   }
 }
 
+
+/* --- For Small Mobile Phones (576px and below) --- */
 @media (max-width: 576px) {
+
+  /* Reduce padding on main containers to give more space to content */
   .dashboard-container,
   .auth-page-container {
     padding: 1rem;
   }
-  h1, .dashboard-title {
-    font-size: 1.8rem;
-  }
-  h2 {
-    font-size: 1.5rem;
-  }
+  
+  /* Further reduce font sizes for readability */
+  h1, .dashboard-title { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+
+  /* Adjust stat card text sizes */
+  .stat-card h3 { font-size: 1rem; }
+  .stat-card p { font-size: 2.2rem; }
+
+  /* Reduce padding inside the login/register card */
   .auth-form-card {
     padding: 1.5rem;
   }
-  .dashboard-table .btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.8rem;
+  
+  /* Style the collapsed navbar menu to match the glass theme */
+  .navbar-collapse {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    margin-top: 0.5rem;
   }
 }
