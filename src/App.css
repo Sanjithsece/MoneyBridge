@@ -247,3 +247,76 @@ a:hover {
     margin-top: 0.5rem;
   }
 }
+/* =========================================================
+   8. TWO-COLUMN CREATE REQUEST FORM
+   ========================================================= */
+
+.create-request-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 2rem;
+}
+
+.create-request-card {
+  display: flex;
+  width: 100%;
+  max-width: 900px; 
+  border-radius: 20px !important; 
+  overflow: hidden; 
+}
+
+
+.info-panel {
+  flex-basis: 40%; 
+  background: linear-gradient(135deg, var(--accent-warm), #ff8a6e);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  text-align: center;
+}
+
+.info-panel-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-panel h3 {
+  color: white;
+  text-shadow: none;
+}
+
+.info-panel p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+
+.form-panel {
+  flex-basis: 60%; 
+  padding: 3rem;
+  background: var(--glass-bg); 
+}
+
+
+@media (max-width: 768px) {
+  .create-request-card {
+    flex-direction: column; 
+  }
+  
+  .info-panel, .form-panel {
+    flex-basis: 100%; 
+  }
+
+  .info-panel {
+    padding: 2rem;
+  }
+  
+  .form-panel {
+    padding: 2rem;
+  }
+}

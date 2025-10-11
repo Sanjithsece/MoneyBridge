@@ -54,12 +54,14 @@ const Navbar = () => {
                                 </Nav.Link>
                                 <Nav.Link as={Link} to="/create-request">Create Request</Nav.Link>
                                 <Nav.Link as={Link} to="/my-profile">My Profile</Nav.Link>
+                                <Nav.Link as={Link} to="/">Open Request</Nav.Link>
                                 <Button variant="outline-light" onClick={handleLogout}>Logout</Button>
                             </>
                         ) : (
                             <>
                                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
                                 <Nav.Link as={Link} to="/register">Register</Nav.Link>
+                            
                             </>
                         )}
                     </Nav>

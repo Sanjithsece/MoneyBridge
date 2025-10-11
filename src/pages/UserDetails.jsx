@@ -56,7 +56,7 @@ const UserDetails = () => {
                                 <thead>
                                     <tr>
                                         <th>Proposal ID</th>
-                                        <th>Request ID</th>
+                                        
                                         <th>Status</th>
                                         <th>Meeting Time</th>
                                     </tr>
@@ -65,7 +65,6 @@ const UserDetails = () => {
                                     {proposals.map(p => (
                                         <tr key={p.id}>
                                             <td>{p.id}</td>
-                                            <td>{p.exchangeRequest?.id || 'N/A'}</td>
                                             <td><Badge>{p.status}</Badge></td>
                                             <td>{new Date(p.meetingTime).toLocaleString()}</td>
                                         </tr>

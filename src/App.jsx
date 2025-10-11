@@ -11,25 +11,21 @@ import AdminDashboard from './pages/AdminDashboard';
 import UserDetails from './pages/UserDetails';
 import ProtectedRoute from './components/ProtectedRoute.jsx'; // We will create this
 import AdminRoute from './components/AdminRoute';
-import { AuthProvider } from './context/AuthContext'; // Import the AuthProvider
+import { AuthProvider } from './context/AuthContext'; 
+
 
 function App() {
   return (
-    // Wrap everything in AuthProvider
     <AuthProvider>
       <Router>
         <Navbar />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
-          {/* Protected Routes for logged-in users */}
           <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/create-request" element={<ProtectedRoute><CreateRequest /></ProtectedRoute>} />
           <Route path="/my-requests" element={<ProtectedRoute><MyRequests /></ProtectedRoute>} />
           <Route path="/my-profile" element={<ProtectedRoute><MyProfile /></ProtectedRoute>} />
-          
-          {/* Protected Routes for Admin users */}
           <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
           <Route path="/admin/users/:userId" element={<AdminRoute><UserDetails /></AdminRoute>} />
           
