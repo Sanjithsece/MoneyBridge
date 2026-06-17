@@ -10,7 +10,7 @@ const MyProfile = () => {
     const [feedback, setFeedback] = useState({ from_name: '', from_email: '', message: '' });
 
     useEffect(() => {
-        api.get('/users/me')
+        api.get('/auth/me')
             .then(res => {
                 setUser(res.data);
                 setFeedback(prev => ({ ...prev, from_name: res.data.fullName }));
@@ -54,14 +54,15 @@ const MyProfile = () => {
     }
 
     return (
-        <Container className="mt-5">
+        <Container className="page-shell">
             <Row className="justify-content-center">
                 <Col lg={8}>
                     <Card className="mb-4">
                         <Card.Header as="h3">My Profile</Card.Header>
                         <Card.Body className="text-center">
                             <Card.Title className="mt-3">{user.fullName}</Card.Title>
-                            <Card.Text className="text-muted">{user.phoneNumber}</Card.Text>
+                            <Card.Text className="text-muted">{user.email}</Card.Text>
+                            <span className="status-pill success">Verified SECE account</span>
                         </Card.Body>
                     </Card>
 
@@ -96,10 +97,10 @@ const MyProfile = () => {
                                     <strong>Create a Request:</strong> Need UPI for your cash? Post a request specifying the amount and a general location hint.
                                 </li>
                                 <li>
-                                    <strong>Get Proposals:</strong> Other nearby users will see your request and send proposals to help you with the exchange.
+                                    <strong>Get Metting request :</strong> Other nearby users will see your request and send request to help you with the exchange.
                                 </li>
                                 <li>
-                                    <strong>Accept & Connect:</strong> Review the proposals, accept the one that works for you, and coordinate to complete the exchange.
+                                    <strong>Accept & Connect:</strong> Review the Request, accept the one that works for you, and coordinate to complete the exchange.
                                 </li>
                             </ul>
                             

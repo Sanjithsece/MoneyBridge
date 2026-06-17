@@ -22,7 +22,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    api.get('/users/me')
+    api.get('/auth/me')
       .then(res => setCurrentUser(res.data))
       .catch(error => console.error('Failed to fetch user:', error));
 
@@ -40,12 +40,15 @@ const Home = () => {
   }
 
   return (
-    <Container className="mt-4">
-      <Row className="align-items-center mb-3">
-        <Col><h1>Open Exchange Requests</h1></Col>
+    <Container className="page-shell">
+      <Row className="align-items-center page-heading">
+        <Col>
+          <p className="eyebrow">Campus exchange board</p>
+          <h1>Open Exchange Requests</h1>
+        </Col>
         <Col className="text-end">
           <Button variant="outline-primary" onClick={fetchRequests} disabled={loading}>
-            {loading ? 'Loading…' : 'Refresh'}
+            {loading ? 'Loading...' : 'Refresh'}
           </Button>
         </Col>
       </Row>
@@ -59,7 +62,8 @@ const Home = () => {
                 <Col md={6} lg={4} key={req.id} className="mb-4">
                   <Card className="request-card">
                     <Card.Body>
-                      <Card.Title>₹{req.amount}</Card.Title>
+                      <Badge bg={req.status === 'OPEN' ? 'primary' : 'secondary'} className="mb-3">{req.status}</Badge>
+                      <Card.Title>₹{Number(req.amount).toLocaleString('en-IN')}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">
                         by {req.user.fullName}
                       </Card.Subtitle>
@@ -73,15 +77,12 @@ const Home = () => {
                         Propose Meeting
                       </Button>
                     </Card.Body>
-                    <Card.Footer>
-                      <Badge bg={req.status === 'OPEN' ? 'primary' : 'secondary'}>{req.status}</Badge>
-                    </Card.Footer>
                   </Card>
                 </Col>
               )
             ))
           ) : (
-            <p className="text-center w-100">No open requests from other users at the moment.</p>
+            <p className="empty-state">No open requests from other users at the moment.</p>
           )}
         </Row>
       )}

@@ -21,18 +21,18 @@ const UserDetails = () => {
     }, [userId]);
 
     if (loading) {
-        return <Container className="text-center mt-5"><Spinner animation="border" /></Container>;
+        return <Container className="text-center page-shell"><Spinner animation="border" /></Container>;
     }
 
     if (!userData) {
-        return <Container className="text-center mt-5"><h2>User not found.</h2></Container>;
+        return <Container className="text-center page-shell"><h2>User not found.</h2></Container>;
     }
 
     const { user, proposals } = userData;
 
     return (
-        <Container className="mt-4">
-            <Link to="/admin/dashboard">← Back to Dashboard</Link>
+        <Container className="page-shell">
+            <Link to="/admin/dashboard">Back to Dashboard</Link>
             <h1 className="my-3">User Details</h1>
             <Row>
                 <Col md={4}>
@@ -42,7 +42,8 @@ const UserDetails = () => {
                             <Card.Title>{user.fullName}</Card.Title>
                             <Card.Text>
                                 <strong>ID:</strong> {user.id}<br />
-                                <strong>Phone:</strong> {user.phoneNumber}<br />
+                                <strong>Email:</strong> {user.email}<br />
+                                <strong>Verified:</strong> {user.isVerified ? 'Yes' : 'No'}<br />
                                 <strong>Role:</strong> {user.role}
                             </Card.Text>
                         </Card.Body>
@@ -50,7 +51,7 @@ const UserDetails = () => {
                 </Col>
                 <Col md={8}>
                     <Card>
-                        <Card.Header>Proposals Made by This User ({proposals.length})</Card.Header>
+                        <Card.Header>Request Made by This User ({proposals.length})</Card.Header>
                         <Card.Body>
                             <Table striped bordered hover responsive>
                                 <thead>

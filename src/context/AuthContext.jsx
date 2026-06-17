@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
             try {
     
                 api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                const response = await api.get('/users/me');
+                const response = await api.get('/auth/me');
                 setUser(response.data);
             } catch (error) {
                 console.error("Failed to fetch user or token is invalid", error);

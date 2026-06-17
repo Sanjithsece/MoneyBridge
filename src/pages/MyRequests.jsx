@@ -46,16 +46,16 @@ const MyRequests = () => {
     };
 
     if (loading) {
-        return <Container className="text-center mt-5"><Spinner animation="border" /></Container>
+        return <Container className="text-center page-shell"><Spinner animation="border" /></Container>
     }
 
     return (
-        <Container className="mt-4">
+        <Container className="page-shell">
             {error && <Alert variant="danger" onClose={() => setError('')} dismissible>{error}</Alert>}
             {success && <Alert variant="success" onClose={() => setSuccess('')} dismissible>{success}</Alert>}
             <Row>
                 <Col md={8}>
-                    <h2>My Requests & Proposals</h2>
+                    <h2>My Requests </h2>
                     {myRequests.length > 0 ? myRequests.map(req => (
                         <Card key={req.id} className="mb-4">
                             <Card.Header className="d-flex justify-content-between align-items-center">
@@ -63,7 +63,7 @@ const MyRequests = () => {
                                 
                             </Card.Header>
                             <Card.Body>
-                                <Card.Title>Proposals Received</Card.Title>
+                                <Card.Title> Received Information </Card.Title>
                                 {Array.isArray(req.meetingProposals) && req.meetingProposals.length > 0 ? (
                                     <ListGroup variant="flush">
                                         {req.meetingProposals.map(proposal => (

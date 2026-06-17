@@ -4,12 +4,13 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import VerifyEmail from './pages/VerifyEmail';
 import CreateRequest from './pages/CreateRequest';
 import MyRequests from './pages/MyRequests';
 import MyProfile from './pages/MyProfile';
 import AdminDashboard from './pages/AdminDashboard';
 import UserDetails from './pages/UserDetails';
-import ProtectedRoute from './components/ProtectedRoute.jsx'; // We will create this
+import ProtectedRoute from './components/ProtectedRoute.jsx'; 
 import AdminRoute from './components/AdminRoute';
 import { AuthProvider } from './context/AuthContext'; 
 
@@ -17,11 +18,17 @@ import { AuthProvider } from './context/AuthContext';
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <Navbar />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/verify-email/:token" element={<VerifyEmail />} />
           <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/create-request" element={<ProtectedRoute><CreateRequest /></ProtectedRoute>} />
           <Route path="/my-requests" element={<ProtectedRoute><MyRequests /></ProtectedRoute>} />

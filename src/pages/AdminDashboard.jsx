@@ -40,12 +40,12 @@ const AdminDashboard = () => {
     const filteredTransactions = transactions.filter(tx => {
         const searchTermLower = transactionSearchTerm.toLowerCase();
         const proposerName = tx.proposer?.fullName?.toLowerCase() || '';
-        const requesterName = tx.request?.user?.fullName?.toLowerCase() || ''; // Assuming this path based on previous logic
+        const requesterName = tx.receiver?.fullName?.toLowerCase() || ''; 
         return proposerName.includes(searchTermLower) || requesterName.includes(searchTermLower);
     });
 
     return (
-        <Container fluid className="dashboard-container">
+        <Container fluid className="dashboard-container page-shell">
             <h1 className="dashboard-title">Admin Dashboard</h1>
             <Row className="my-4 stat-cards-container">
                 <Col md={6}>
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
                 <Col md={6}>
                     <Card className="mb-3 stat-card glass-effect">
                         <Card.Body>
-                            <Card.Title as="h3">Total Transactions (Proposals)</Card.Title>
+                            <Card.Title as="h3">Total Transactions </Card.Title>
                             <Card.Text as="p">{stats.totalTransactions}</Card.Text>
                         </Card.Body>
                     </Card>
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
                         <tr>
                             <th>ID</th>
                             <th>Full Name</th>
-                            <th>Phone Number</th>
+                            <th>Email</th>
                             <th>Role</th>
                             <th>Actions</th>
                         </tr>
@@ -96,7 +96,7 @@ const AdminDashboard = () => {
                             <tr key={user.id}>
                                 <td data-label="ID">{user.id}</td>
                                 <td data-label="Full Name">{user.fullName}</td>
-                                <td data-label="Phone Number">{user.phoneNumber}</td>
+                                <td data-label="Email">{user.email}</td>
                                 <td data-label="Role"><Badge bg={user.role === 'ROLE_ADMIN' ? 'danger' : 'secondary'}>{user.role}</Badge></td>
                                 <td data-label="Actions">
                                     <Button variant="info" size="sm" className="me-2" onClick={() => navigate(`/admin/users/${user.id}`)}>
@@ -140,13 +140,13 @@ const AdminDashboard = () => {
                     </thead>
                     <tbody>
                         
-                        {transactions.map(tx => (
+                        {filteredTransactions.map(tx => (
                         <tr key={tx.id}>
-                             <td>{tx.receiver?.fullName || 'N/A'}</td>
-                            <td>{tx.proposer?.fullName || 'N/A'}</td>
+                             <td data-label="Request Made By">{tx.receiver?.fullName || 'N/A'}</td>
+                            <td data-label="Proposal Made By">{tx.proposer?.fullName || 'N/A'}</td>
                             
-                            <td><Badge>{tx.status}</Badge></td>
-                            <td>{new Date(tx.meetingTime).toLocaleString()}</td>
+                            <td data-label="Status"><Badge>{tx.status}</Badge></td>
+                            <td data-label="Meeting Time">{new Date(tx.meetingTime).toLocaleString()}</td>
                         </tr>
                     ))}
                     </tbody>

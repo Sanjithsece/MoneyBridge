@@ -21,7 +21,6 @@ const ProposeMeetingModal = ({ show, handleClose, request, currentUser }) => {
             requestId: request.id,
             proposerId: currentUser.id,
             receiverId: request.user.id,
-            locationId: 1,
             meetingTime: meetingTime,
         };
 
@@ -30,7 +29,7 @@ const ProposeMeetingModal = ({ show, handleClose, request, currentUser }) => {
             setSuccess("Meeting proposal sent successfully! You can now close this window.");
             setTimeout(handleClose, 3000);
         } catch (err) {
-            setError(err.response?.data || "Failed to send proposal.");
+            setError(err.response?.data?.error || err.response?.data?.message || "Failed to send proposal.");
         }
     };
 

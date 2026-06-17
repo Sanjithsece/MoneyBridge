@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navbar as BootstrapNavbar, Nav, Container, Button, Badge } from 'react-bootstrap';
+import { FaBell, FaPlus, FaUserCircle, FaSignOutAlt, FaShieldAlt } from 'react-icons/fa';
 import AuthContext from '../context/AuthContext'; 
 import api from '../services/api';
 
@@ -35,27 +36,27 @@ const Navbar = () => {
     };
 
     return (
-        <BootstrapNavbar bg="dark" variant="dark" expand="lg">
+        <BootstrapNavbar expand="lg" className="app-navbar">
             <Container>
-                <BootstrapNavbar.Brand as={Link} to="/">MoneyBridge</BootstrapNavbar.Brand>
+                <BootstrapNavbar.Brand as={Link} to="/" className="brand-mark">MoneyBridge</BootstrapNavbar.Brand>
                 <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
                 <BootstrapNavbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto align-items-center">
                         {token && user ? (
                             <>
-                                {isAdmin && <Nav.Link as={Link} to="/admin/dashboard">Admin</Nav.Link>}
+                                {isAdmin && <Nav.Link as={Link} to="/admin/dashboard"><FaShieldAlt /> Admin</Nav.Link>}
                                 <Nav.Link as={Link} to="/my-requests" className="position-relative">
-                                    Notifications
+                                    <FaBell /> Activity
                                     {unreadCount > 0 && 
                                         <Badge pill bg="danger" className="position-absolute top-0 start-100 translate-middle" style={{ fontSize: '0.6em' }}>
                                             {unreadCount}
                                         </Badge>
                                     }
                                 </Nav.Link>
-                                <Nav.Link as={Link} to="/create-request">Create Request</Nav.Link>
-                                <Nav.Link as={Link} to="/my-profile">My Profile</Nav.Link>
-                                <Nav.Link as={Link} to="/">Open Request</Nav.Link>
-                                <Button variant="outline-light" onClick={handleLogout}>Logout</Button>
+                                <Nav.Link as={Link} to="/create-request"><FaPlus /> Create</Nav.Link>
+                                <Nav.Link as={Link} to="/my-profile"><FaUserCircle /> Profile</Nav.Link>
+                                <Nav.Link as={Link} to="/">Open Requests</Nav.Link>
+                                <Button variant="outline-primary" onClick={handleLogout}><FaSignOutAlt /> Logout</Button>
                             </>
                         ) : (
                             <>

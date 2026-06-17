@@ -1,322 +1,414 @@
-/* =========================================================
-   1. THEME VARIABLES & GLOBAL STYLES (LIGHT WARM THEME)
-   ========================================================= */
 :root {
-  /* New warm accent color (replaces the old green) */
-  --accent-warm: #FF6B6B; /* A friendly coral color */
-  --accent-warm-hover: #e05252;
-
-  /* Primary text and dark element color */
-  --text-dark: #495057;
-  --headings-dark: #343a40;
-  
-  /* Variables for the glass effect, adapted for a light background */
-  --glass-bg: rgba(255, 255, 255, 0.45); /* More opaque for readability */
-  --glass-border: rgba(255, 255, 255, 0.6);
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --surface-soft: #eef4f8;
+  --text: #14213d;
+  --muted: #65758b;
+  --line: #d9e2ec;
+  --primary: #22577a;
+  --primary-strong: #17415c;
+  --accent: #38a3a5;
+  --success: #2d9c6f;
+  --danger: #d64545;
+  --warning: #f2b84b;
+  --shadow: 0 10px 30px rgba(20, 33, 61, 0.08);
+  --radius: 8px;
 }
 
-/* =========================================================
-   2. ANIMATED BODY BACKGROUND (LIGHT WARM PALETTE)
-   ========================================================= */
-@keyframes warm-gradient-flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  /* New palette: A soft blend of peach, pink, and light orange */
-  background: linear-gradient(-45deg, #fad0c4, #ffd1ff, #ff9a8b, #fecfef);
-  background-size: 400% 400%;
-  animation: warm-gradient-flow 30s ease infinite;
-
-  /* Set default text color to dark for high contrast */
-  font-family: 'Lato', sans-serif;
-  color: var(--text-dark);
-}
-
-/* =========================================================
-   3. TYPOGRAPHY & READABILITY
-   ========================================================= */
-h1, h2, h3, h4, .card-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  color: var(--headings-dark);
-  /* Removed text-shadow for a cleaner, modern look on a light background */
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba(56, 163, 165, 0.12), transparent 30rem),
+    linear-gradient(180deg, #fbfcfd 0%, var(--bg) 100%);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 a {
-  color: var(--accent-warm);
-  transition: color 0.2s ease;
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
 }
+
 a:hover {
-  color: var(--accent-warm-hover);
+  color: var(--accent);
 }
 
-/* =========================================================
-   4. GLASSMORPHISM STYLES (ADAPTED FOR LIGHT THEME)
-   ========================================================= */
-
-/* Apply the glass effect to ALL cards and containers */
-.navbar,
-.card,
-.request-card,
-.form-container .card,
-.auth-form-card {
-  background: var(--glass-bg) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 15px !important;
-  border: 1px solid var(--glass-border) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1) !important;
+h1,
+h2,
+h3,
+h4,
+.card-title {
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
-/* Style for form inputs to match the light theme */
-.form-control {
-  background-color: rgba(255, 255, 255, 0.5) !important;
-  color: var(--text-dark) !important;
-  border: 1px solid var(--glass-border) !important;
-  border-radius: 8px !important;
-}
-.form-control::placeholder {
-  color: rgba(0, 0, 0, 0.4) !important;
-}
-.form-control:focus {
-  box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.5) !important;
-}
-.form-label {
-   color: var(--text-dark) !important;
+.page-shell {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
 }
 
-/* =========================================================
-   5. COMPONENT-SPECIFIC STYLES
-   ========================================================= */
-
-/* Buttons now use the new warm accent color */
-.btn-primary,
-.btn-success {
-  background-color: var(--accent-warm);
-  border-color: var(--accent-warm);
-  font-weight: bold;
-  transition: background-color 0.2s ease-in-out;
-}
-.btn-primary:hover,
-.btn-success:hover {
-  background-color: var(--accent-warm-hover);
-  border-color: var(--accent-warm-hover);
-}
-
-/* --- Login/Register Pages --- */
-.auth-page-container {
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.auth-form-card {
-  width: 100%;
-  max-width: 420px;
-  padding: 2rem;
-}
-.auth-switch-link {
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* --- NAVBAR TEXT COLOR OVERRIDE --- */
-.navbar-dark .navbar-nav .nav-link,
-.navbar-dark .navbar-brand {
-  color: black !important;
-}
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-brand:hover {
-  color: #333 !important;
-}
-.navbar-dark .btn-outline-light {
-  color: black !important;
-  border-color: black !important;
-}
-.navbar-dark .btn-outline-light:hover {
-  color: white !important;
-  background-color: black !important;
-  border-color: black !important;
-}
-
-/* =========================================================
-   6. RESPONSIVE DESIGN (MOBILE-FIRST & ENHANCED)
-   ========================================================= */
-
-/* --- For Tablets and smaller (768px and below) --- */
-@media (max-width: 768px) {
-
-  /* --- THE BIGGEST UPGRADE: TRANSFORM TABLES INTO CARDS --- */
-  
-  /* Hide the original table headers */
-  .dashboard-table thead {
-    display: none;
-  }
-  
-  /* Make the table and its body/rows behave like block elements */
-  .dashboard-table, .dashboard-table tbody, .dashboard-table tr, .dashboard-table td {
-    display: block;
-    width: 100%;
-  }
-  
-  /* Style each table row as a separate card */
-  .dashboard-table tr {
-    margin-bottom: 1.5rem;
-    border-radius: 10px;
-    border: 1px solid var(--glass-border);
-    padding: 0.5rem;
-  }
-  
-  /* Style each table cell (data point) */
-  .dashboard-table td {
-    text-align: right; /* Align data to the right */
-    position: relative;
-    padding-left: 50%; /* Make space for the label */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-  }
-  
-  .dashboard-table td:last-child {
-    border-bottom: none; /* Remove border from the last cell in a card */
-  }
-  
-  /* Use the 'data-label' attribute to create a label for each data point */
-  .dashboard-table td::before {
-    content: attr(data-label); /* This is the magic part */
-    position: absolute;
-    left: 1rem;
-    font-weight: bold;
-    text-align: left;
-  }
-  
-  /* --- OTHER IMPROVEMENTS --- */
-
-  /* Stack the dashboard summary cards vertically */
-  .stat-cards-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  .stat-card {
-    width: 100%;
-    max-width: 450px;
-  }
-  
-  /* Make the main dashboard title a bit smaller */
-  .dashboard-title {
-    font-size: 2rem;
-  }
-}
-
-
-/* --- For Small Mobile Phones (576px and below) --- */
-@media (max-width: 576px) {
-
-  /* Reduce padding on main containers to give more space to content */
-  .dashboard-container,
-  .auth-page-container {
-    padding: 1rem;
-  }
-  
-  /* Further reduce font sizes for readability */
-  h1, .dashboard-title { font-size: 1.8rem; }
-  h2 { font-size: 1.5rem; }
-
-  /* Adjust stat card text sizes */
-  .stat-card h3 { font-size: 1rem; }
-  .stat-card p { font-size: 2.2rem; }
-
-  /* Reduce padding inside the login/register card */
-  .auth-form-card {
-    padding: 1.5rem;
-  }
-  
-  /* Style the collapsed navbar menu to match the glass theme */
-  .navbar-collapse {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 10px;
-    border: 1px solid var(--glass-border);
-    padding: 1rem;
-    margin-top: 0.5rem;
-  }
-}
-/* =========================================================
-   8. TWO-COLUMN CREATE REQUEST FORM
-   ========================================================= */
-
-.create-request-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  padding: 2rem;
-}
-
-.create-request-card {
-  display: flex;
-  width: 100%;
-  max-width: 900px; 
-  border-radius: 20px !important; 
-  overflow: hidden; 
-}
-
-
-.info-panel {
-  flex-basis: 40%; 
-  background: linear-gradient(135deg, var(--accent-warm), #ff8a6e);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-  text-align: center;
-}
-
-.info-panel-icon {
-  font-size: 4rem;
+.page-heading {
+  gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.info-panel h3 {
-  color: white;
-  text-shadow: none;
+.eyebrow {
+  margin-bottom: 0.35rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.info-panel p {
-  font-size: 0.9rem;
-  opacity: 0.9;
+.empty-state {
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2rem;
+  color: var(--muted);
+  text-align: center;
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
 }
 
+.app-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 6px 24px rgba(20, 33, 61, 0.06);
+}
+
+.brand-mark {
+  color: var(--text) !important;
+  font-weight: 900;
+}
+
+.app-navbar .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.app-navbar .nav-link:hover,
+.app-navbar .nav-link:focus {
+  color: var(--primary);
+}
+
+.btn {
+  border-radius: var(--radius);
+  font-weight: 800;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary,
+.btn-success {
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 8px 18px rgba(34, 87, 122, 0.18);
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+.btn-primary:focus,
+.btn-success:focus {
+  background: var(--primary-strong);
+  border-color: var(--primary-strong);
+}
+
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-danger {
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+.card,
+.modal-content,
+.table-container,
+.auth-form-card,
+.create-request-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow);
+}
+
+.card-header {
+  background: var(--surface-soft);
+  border-bottom: 1px solid var(--line);
+  font-weight: 800;
+}
+
+.request-card {
+  height: 100%;
+  overflow: hidden;
+}
+
+.request-card .card-title {
+  font-size: 2rem;
+}
+
+.request-card .card-body {
+  display: flex;
+  min-height: 260px;
+  flex-direction: column;
+}
+
+.request-card .btn {
+  margin-top: auto;
+}
+
+.form-control,
+.form-select {
+  min-height: 46px;
+  border-color: var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(56, 163, 165, 0.18);
+}
+
+.form-label {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.auth-page-container {
+  display: flex;
+  min-height: calc(100vh - 74px);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.auth-form-card {
+  width: min(100%, 440px);
+  padding: 1.25rem;
+}
+
+.auth-form-card .card-body {
+  padding: 1.75rem;
+}
+
+.auth-switch-link {
+  margin-top: 1.5rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.create-request-container {
+  display: flex;
+  min-height: calc(100vh - 74px);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.create-request-card {
+  display: grid;
+  width: min(100%, 960px);
+  grid-template-columns: 0.85fr 1.15fr;
+  overflow: hidden;
+}
+
+.info-panel {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem;
+  background: #e9f5f5;
+  border-right: 1px solid var(--line);
+}
+
+.info-panel p:last-child {
+  color: var(--muted);
+}
 
 .form-panel {
-  flex-basis: 60%; 
-  padding: 3rem;
-  background: var(--glass-bg); 
+  padding: 2.5rem;
 }
 
+.dashboard-container {
+  max-width: 1220px;
+}
 
-@media (max-width: 768px) {
-  .create-request-card {
-    flex-direction: column; 
+.dashboard-title {
+  margin-bottom: 1.25rem;
+}
+
+.stat-card .card-body {
+  padding: 1.5rem;
+}
+
+.stat-card h3 {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.stat-card p {
+  margin: 0;
+  color: var(--primary);
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.table-container {
+  overflow: hidden;
+}
+
+.dashboard-table {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.dashboard-table thead th {
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.dashboard-table tbody tr:hover {
+  background: rgba(56, 163, 165, 0.06);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.status-pill.success {
+  color: #17664a;
+  background: rgba(45, 156, 111, 0.14);
+}
+
+.list-group-item {
+  border-color: var(--line);
+}
+
+.modal-content {
+  overflow: hidden;
+}
+
+@media (max-width: 992px) {
+  .page-shell {
+    padding-top: 1.5rem;
   }
-  
-  .info-panel, .form-panel {
-    flex-basis: 100%; 
+
+  .create-request-card {
+    grid-template-columns: 1fr;
   }
 
   .info-panel {
-    padding: 2rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
   }
-  
-  .form-panel {
-    padding: 2rem;
+
+  .app-navbar .navbar-collapse {
+    margin-top: 0.75rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .app-navbar .nav-link,
+  .app-navbar .btn {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-heading .text-end {
+    text-align: left !important;
+  }
+
+  .dashboard-table thead {
+    display: none;
+  }
+
+  .dashboard-table,
+  .dashboard-table tbody,
+  .dashboard-table tr,
+  .dashboard-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .dashboard-table tr {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .dashboard-table td {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    text-align: right;
+    border: 0;
+  }
+
+  .dashboard-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-weight: 800;
+    text-align: left;
+  }
+}
+
+@media (max-width: 576px) {
+  .auth-form-card .card-body,
+  .form-panel,
+  .info-panel {
+    padding: 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+  }
+
+  .request-card .card-title {
+    font-size: 1.7rem;
   }
 }
